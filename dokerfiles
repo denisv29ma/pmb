@@ -1,4 +1,10 @@
-Effectuer les mises-à-jour avec le compte root installation apache2 et php7.3 
+FROM debian:10.5
+
+LABEL maintainer="denisv29ma"
+
+ENV DEBIAN_FRONTEND noninteractive
+
+ffectuer les mises-à-jour avec le compte root installation apache2 et php7.3 
 
 apt-get update
 apt -y install apache2
