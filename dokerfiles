@@ -1,0 +1,24 @@
+Effectuer les mises-à-jour avec le compte root installation apache2 et php7.3 
+
+apt-get update
+apt -y install apache2
+apt -y install php7.3 php7.3-mbstring php7.3-mysql php7.3-xml php7.3-dev php7.3-gd  libyaz4-dev
+
+Installation du serveur SQL MariaDB
+
+apt -y install mariadb-server
+
+Installer PMB
+cd /var/www/html/
+wget https://forge.sigb.net/attachments/download/3113/pmb7.3.4.zip
+apt -y install unzip
+unzip pmb7.3.4.zip
+rm pmb7.3.4.zip
+chown -R www-data:www-data /var/www/html
+find -type d -exec chmod 0750 {} \;
+find -type f -exec chmod 0640 {} \;
+
+Installer yaz à l'aide de pecl
+pecl install yaz
+echo "extension=yaz.so" >> /etc/php/7.3/apache2/php.ini
+systemctl restart apache2
